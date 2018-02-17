@@ -4,3 +4,5 @@ Este es una practica de git, y refactorizacion del proyecto Bolitas en el game e
 
 URL del proyecto original:
 https://github.com/gpuma/bolitas
+
+#Se aceptan sugerencias!!!!
