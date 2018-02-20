@@ -1,9 +1,11 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 var acceleration = 1000
 var top_move_speed = 200
 var top_jump_speed = 400
 var life=5
+var gravedad = 500
+var movimiento = Vector2()
 
 var directional_force = Vector2()
 
@@ -19,12 +21,15 @@ const DIRECTION = {
 
 func _ready():
 	# para activar detección de colisiones
-	set_contact_monitor( true )
-	set_max_contacts_reported( 5 )
-	connect("body_enter",self,"collision_now")
+	#set_contact_monitor( true )
+	#set_max_contacts_reported( 5 )
+	#connect("body_enter",self,"collision_now")
 	life=5
+func _physics_process(delta):
+	movimiento = gravedad *delta
+	pass
 
-# detección de colisiones
+"""# detección de colisiones"""
 func collision_now(who):
 #	if (who.get_name() == "BolaNodo"):
 	if (who.get_name().substr(0,8) == "BolaNodo"):
