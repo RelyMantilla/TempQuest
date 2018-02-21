@@ -1,9 +1,16 @@
-extends RigidBody2D
+extends KinematicBody2D
+
+var velocidad = Vector2()
+var gravedad = 999
+var movimiento = 0
+var velocidad_lateral=300
+var velocidad_salto = 666
 
 var acceleration = 1000
 var top_move_speed = 200
 var top_jump_speed = 400
 var life=5
+
 
 var directional_force = Vector2()
 
@@ -19,10 +26,46 @@ const DIRECTION = {
 
 func _ready():
 	# para activar detección de colisiones
-	set_contact_monitor( true )
-	set_max_contacts_reported( 5 )
-	connect("body_enter",self,"collision_now")
+	#set_contact_monitor( true )
+	#set_max_contacts_reported( 5 )
+	#connect("body_enter",self,"collision_now")
+	velocidad.x = 0
+	velocidad.y = 0
 	life=5
+	
+#Lectura calculo de la gravedad y fuerza
+func _physics_process(delta):
+	
+#	if player==global.PLAYER_1:
+	if (Input.is_action_pressed("player1_der")):
+		velocidad.x += velocidad_lateral
+	elif (Input.is_action_pressed("player1_izq")):
+		velocidad.x -= velocidad_lateral
+	elif (Input.is_action_pressed("player1_up")):
+		velocidad.y -= velocidad_salto
+	else:
+		velocidad.x = 0
+#	elif player==global.PLAYER_2:
+#		if (Input.is_action_pressed("ui_left")):
+#			directional_force += DIRECTION.LEFT
+#		if (Input.is_action_pressed("ui_right")):
+#			directional_force += DIRECTION.RIGHT
+#		if (Input.is_action_pressed("ui_jump")):
+#			directional_force += DIRECTION.UP
+	velocidad.y += gravedad * delta  # v = d * t
+	movimiento = velocidad * delta  # v = d * t
+	move_and_slide(movimiento)
+	
+#	get_slide_collision(
+#	get_parent().get_node("Player1").collision_now(
+	
+	
+	#var normal = get_slide_collision()
+	
+	#move_and_slide(movimiento,Vector2(0,0),0,4,0.78)
+#	if(is_colliding()):
+#		print("colisiono")
+#		pass
 
 # detección de colisiones
 func collision_now(who):
@@ -53,6 +96,7 @@ func AjustaVida_2(Personaje_Origen):
 		if global.VIDA1 == 0:
 #			get_tree().change_scene("res://resultados.tscn")
 			pass
+
 
 func _integrate_forces(state):
 	#fuerza final
