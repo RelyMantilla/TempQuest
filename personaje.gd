@@ -1,10 +1,9 @@
 extends KinematicBody2D
 
 var velocidad = Vector2()
-var gravedad = 999
-var movimiento = 0
-var velocidad_lateral=300
-var velocidad_salto = 666
+var gravedad = 500
+var velocidad_lateral=200
+var velocidad_salto = 200
 
 var acceleration = 1000
 var top_move_speed = 200
@@ -35,29 +34,28 @@ func _ready():
 	
 #Lectura calculo de la gravedad y fuerza
 func _physics_process(delta):
+	velocidad.x = 0
+	velocidad.y += gravedad * delta
+	#print(get_parent().get_child().)
+	var grupo = get_parent().
+	print(grupo)
+	if ("Player1"==get_parent().get_node("Player1").name):
+		if (Input.is_action_pressed("player1_der")):
+			velocidad.x = velocidad_lateral
+		if (Input.is_action_pressed("player1_izq")):
+			velocidad.x = -velocidad_lateral
+		if (Input.is_action_pressed("player1_up")):
+			velocidad.y = -velocidad_salto
+	elif ("Player2"==get_parent().get_node("Player1").name):
+		if (Input.is_action_pressed("ui_left")):
+			velocidad.x = velocidad_lateral
+		if (Input.is_action_pressed("ui_right")):
+			velocidad.x = -velocidad_lateral
+		if (Input.is_action_pressed("ui_jump")):
+			velocidad.y = -velocidad_salto
 	
-#	if player==global.PLAYER_1:
-	if (Input.is_action_pressed("player1_der")):
-		velocidad.x += velocidad_lateral
-	elif (Input.is_action_pressed("player1_izq")):
-		velocidad.x -= velocidad_lateral
-	elif (Input.is_action_pressed("player1_up")):
-		velocidad.y -= velocidad_salto
-	else:
-		velocidad.x = 0
-#	elif player==global.PLAYER_2:
-#		if (Input.is_action_pressed("ui_left")):
-#			directional_force += DIRECTION.LEFT
-#		if (Input.is_action_pressed("ui_right")):
-#			directional_force += DIRECTION.RIGHT
-#		if (Input.is_action_pressed("ui_jump")):
-#			directional_force += DIRECTION.UP
-	velocidad.y += gravedad * delta  # v = d * t
-	movimiento = velocidad * delta  # v = d * t
-	move_and_slide(movimiento)
-	
-#	get_slide_collision(
-#	get_parent().get_node("Player1").collision_now(
+	move_and_slide(velocidad)
+	#move_and_slide(velocidad, Vector2(0,-1))
 	
 	
 	#var normal = get_slide_collision()

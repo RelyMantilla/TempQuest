@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Imagenes/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Player1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player2.tscn" type="PackedScene" id=3]
+
+[sub_resource type="SegmentShape2D" id=1]
+
+custom_solver_bias = 0.0
+a = Vector2( 0, 0 )
+b = Vector2( 0.501455, 1017.59 )
 
 [node name="Node" type="Node"]
 
@@ -25,7 +32,27 @@ collision_mask = 1
 occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 0, 11, 0, 15, 13, 0, 65536, 13, 0, 65551, 13, 0, 131072, 13, 0, 131087, 13, 0, 196608, 13, 0, 196623, 13, 0, 262144, 13, 0, 262159, 13, 0, 327680, 13, 0, 327695, 13, 0, 393216, 13, 0, 393231, 13, 0, 458752, 13, 0, 458767, 13, 0, 524288, 13, 0, 524303, 13, 0, 589824, 13, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 13, 0 )
+_sections_unfolded = [ "Collision", "Material" ]
 
-[node name="Node" parent="." index="1" instance=ExtResource( 2 )]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="1"]
+
+editor/display_folded = true
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+
+position = Vector2( 0.125, -1.625 )
+rotation = -1.57362
+shape = SubResource( 1 )
+
+[node name="Node" parent="." index="2" instance=ExtResource( 2 )]
+
+[node name="Node2" parent="." index="3" instance=ExtResource( 3 )]
 
 

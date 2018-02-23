@@ -12,10 +12,10 @@ height = 41.875
 [node name="Node" type="Node" index="0"]
 
 [node name="Player" type="KinematicBody2D" parent="." index="0" groups=[
-"Player1",
+"Player2",
 ]]
 
-position = Vector2( 134.688, 165.375 )
+position = Vector2( 910.688, 115.375 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
