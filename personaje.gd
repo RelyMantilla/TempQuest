@@ -55,10 +55,11 @@ func _physics_process(delta):
 			velocidad.y = -velocidad_salto
 
 	move_and_slide(velocidad)
+	
 
 # detección de colisiones
 func collision_now(who):
-#	if (who.get_name() == "BolaNodo"):
+	print(who)
 	if (who.get_name().substr(0,8) == "BolaNodo"):
 		who.cambiar_estado(PLAYER_ORIGEN)
 	if (who.get_name().substr(0,7) == "Enemigo"):
