@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Area2D" type="Area2D"]
+[node name="Area2D" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -29,5 +29,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 hframes = 3
 _sections_unfolded = [ "Animation", "Transform" ]
+
+[connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]
 
 
