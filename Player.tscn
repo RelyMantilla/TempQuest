@@ -9,26 +9,22 @@ custom_solver_bias = 0.0
 radius = 19.8125
 height = 41.875
 
-[node name="Node" type="Node" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
-[node name="Player" type="KinematicBody2D" parent="." index="0" groups=[
-"Player1",
-]]
-
-position = Vector2( 134.688, 165.375 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Transform" ]
+jugador = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
 visible = false
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="Player" index="1"]
+[node name="Sprite" type="Sprite" parent="." index="1"]
 
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )

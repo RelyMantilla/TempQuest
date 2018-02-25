@@ -1,22 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Imagenes/tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://Imagenes/Monedas.png" type="Texture" id=2]
-[ext_resource path="res://Player1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Player2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Coin.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Imagenes/PJ2.png" type="Texture" id=4]
 
-[sub_resource type="CircleShape2D" id=2]
-
-custom_solver_bias = 0.0
-radius = 10.0
-
-[sub_resource type="SegmentShape2D" id=1]
+[sub_resource type="SegmentShape2D" id=2]
 
 custom_solver_bias = 0.0
 a = Vector2( 0, 0 )
 b = Vector2( 0.501455, 1017.59 )
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -39,28 +34,13 @@ occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 0, 11, 0, 15, 13, 0, 65536, 13, 0, 65551, 13, 0, 131072, 13, 0, 131087, 13, 0, 196608, 13, 0, 196623, 13, 0, 262144, 13, 0, 262159, 13, 0, 327680, 13, 0, 327695, 13, 0, 393216, 13, 0, 393231, 13, 0, 458752, 13, 0, 458767, 13, 0, 524288, 13, 0, 524303, 13, 0, 589824, 13, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 13, 0 )
 _sections_unfolded = [ "Collision", "Material" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Area2D" type="Area2D" parent="." index="1"]
+[node name="Moneda" parent="." index="1" instance=ExtResource( 2 )]
 
-editor/display_folded = true
-position = Vector2( 235.029, 196.166 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-
-shape = SubResource( 2 )
-
-[node name="Sprite" type="Sprite" parent="Area2D" index="1"]
-
-texture = ExtResource( 2 )
-hframes = 3
-_sections_unfolded = [ "Animation" ]
+position = Vector2( 498.283, 410.109 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="2"]
 
@@ -77,10 +57,24 @@ bounce = 0.0
 
 position = Vector2( 0.125, -1.625 )
 rotation = -1.57362
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
-[node name="Node" parent="." index="3" instance=ExtResource( 3 )]
+[node name="Player2" parent="." index="3" instance=ExtResource( 3 )]
 
-[node name="Node2" parent="." index="4" instance=ExtResource( 4 )]
+editor/display_folded = true
+position = Vector2( 910.442, 522.889 )
+_sections_unfolded = [ "Collision", "Material", "Pickable", "Transform", "collision" ]
+jugador = 2
+
+[node name="Sprite" parent="Player2" index="1"]
+
+texture = ExtResource( 4 )
+flip_h = true
+
+[node name="Player" parent="." index="4" instance=ExtResource( 3 )]
+
+position = Vector2( 125.083, 516.738 )
+jugador = 1
 
 
+[editable path="Player2"]
