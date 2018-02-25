@@ -1,4 +1,13 @@
 extends KinematicBody2D
+<<<<<<< HEAD
+=======
+
+var velocidad = Vector2()
+var gravedad = 500
+var velocidad_lateral=200
+var velocidad_salto = 200
+var grupo = 0
+>>>>>>> 334242db8fa7a679e7077af63388e09023f57256
 
 var acceleration = 1000
 var top_move_speed = 200
@@ -6,6 +15,7 @@ var top_jump_speed = 400
 var life=5
 var gravedad = 500
 var movimiento = Vector2()
+
 
 var directional_force = Vector2()
 
@@ -24,14 +34,37 @@ func _ready():
 	#set_contact_monitor( true )
 	#set_max_contacts_reported( 5 )
 	#connect("body_enter",self,"collision_now")
+	velocidad.x = 0
+	velocidad.y = 0
 	life=5
+	
+#Lectura calculo de la gravedad y fuerza
 func _physics_process(delta):
-	movimiento = gravedad *delta
-	pass
+	velocidad.x = 0 #Inicializo variable para limpiar el movimiento
+	velocidad.y += gravedad * delta
+	#grupo = get_parent().get_node("Player").is_in_group()
+	
+	if (get_parent().get_node("Player").is_in_group("Player1")):
+		if (Input.is_action_pressed("player1_der")):
+			velocidad.x = velocidad_lateral
+		if (Input.is_action_pressed("player1_izq")):
+			velocidad.x = -velocidad_lateral
+		if (Input.is_action_pressed("player1_up")):
+			velocidad.y = -velocidad_salto
+	elif (get_parent().get_node("Player").is_in_group("Player2")):
+		if (Input.is_action_pressed("player2_der")):
+			velocidad.x = velocidad_lateral
+		if (Input.is_action_pressed("player2_izq")):
+			velocidad.x = -velocidad_lateral
+		if (Input.is_action_pressed("player2_up")):
+			velocidad.y = -velocidad_salto
+
+	move_and_slide(velocidad)
+	
 
 """# detección de colisiones"""
 func collision_now(who):
-#	if (who.get_name() == "BolaNodo"):
+	print(who)
 	if (who.get_name().substr(0,8) == "BolaNodo"):
 		who.cambiar_estado(PLAYER_ORIGEN)
 	if (who.get_name().substr(0,7) == "Enemigo"):
@@ -58,48 +91,3 @@ func AjustaVida_2(Personaje_Origen):
 		if global.VIDA1 == 0:
 #			get_tree().change_scene("res://resultados.tscn")
 			pass
-
-func _integrate_forces(state):
-	#fuerza final
-	var final_force = Vector2()
-	
-	directional_force = DIRECTION.ZERO
-	
-	apply_force(state)
-	
-	final_force = state.get_linear_velocity() + (directional_force * acceleration)
-	
-	if (final_force.x > top_move_speed):
-		final_force.x = top_move_speed
-	elif (final_force.x < -top_move_speed):
-		final_force.x = -top_move_speed
-		
-	if (final_force.y > top_jump_speed):
-		final_force.y = top_jump_speed
-	elif (final_force.y < -top_jump_speed):
-		final_force.y = -top_jump_speed
-		
-	state.set_linear_velocity(final_force)
-	
-func apply_force(state):
-	pass
-
-func check_movement(player):
-	
-#	Mueve al jugador dependiendo si player es PLAYER_1 o PLAYER_2
-	
-	if player==global.PLAYER_1:
-		if (Input.is_action_pressed("move_left")):
-			directional_force += DIRECTION.LEFT
-		if (Input.is_action_pressed("move_right")):
-			directional_force += DIRECTION.RIGHT
-		if (Input.is_action_pressed("move_jump")):
-			directional_force += DIRECTION.UP
-	elif player==global.PLAYER_2:
-		if (Input.is_action_pressed("ui_left")):
-			directional_force += DIRECTION.LEFT
-		if (Input.is_action_pressed("ui_right")):
-			directional_force += DIRECTION.RIGHT
-		if (Input.is_action_pressed("ui_jump")):
-			directional_force += DIRECTION.UP
-		
