@@ -13,33 +13,40 @@ func _ready():
 func _physics_process(delta):
 	
 	velocidad.y += gravedad	
-	if (jugador==1):
-		if (Input.is_action_pressed("player1_der")):
-			velocidad.x = velocidad_lateral
-			$Sprite.flip_h = true
-		elif (Input.is_action_pressed("player1_izq")):
-			velocidad.x = -velocidad_lateral
-			$Sprite.flip_h = false
+#	if (jugador==1):
+	if (Input.is_action_pressed(str("player",str(jugador) ,"_der"))):
+		velocidad.x = velocidad_lateral
+		$Sprite.flip_h = true
+		if !$Sprite.is_playing():
 			$Sprite.play("Walk1")
-		else:
-			$Sprite.stop()
-			velocidad.x = 0 
-		if (Input.is_action_pressed("player1_up")):
-			velocidad.y = -velocidad_salto
-	elif (jugador==2):
-		if (Input.is_action_pressed("player2_der")):
-			velocidad.x = velocidad_lateral
-			$Sprite.flip_h = true
-		elif (Input.is_action_pressed("player2_izq")):
-			velocidad.x = -velocidad_lateral
-			$Sprite.flip_h = false
-		else:
-			$Sprite.stop()
-			
-			velocidad.x = 0
-			
-		if (Input.is_action_pressed("player2_up")):
-			velocidad.y = -velocidad_salto
+		$Sprite.play("Walk1")
+	elif (Input.is_action_pressed(str("player",str(jugador) ,"_izq"))):
+		velocidad.x = -velocidad_lateral
+		$Sprite.flip_h = false
+		if !$Sprite.is_playing():
+			$Sprite.play("Walk1")
+	else:
+#			$Sprite.stop()
+		velocidad.x = 0 
+	if (Input.is_action_pressed(str("player",str(jugador) ,"_up"))):
+		velocidad.y = -velocidad_salto
+		$Sprite.play("Volar1")
+#		else:
+#			$Sprite.stop()
+#	elif (jugador==2):
+#		if (Input.is_action_pressed("player2_der")):
+#			velocidad.x = velocidad_lateral
+#			$Sprite.flip_h = true
+#		elif (Input.is_action_pressed("player2_izq")):
+#			velocidad.x = -velocidad_lateral
+#			$Sprite.flip_h = false
+#		else:
+#			$Sprite.stop()
+#
+#			velocidad.x = 0
+#
+#		if (Input.is_action_pressed("player2_up")):
+#			velocidad.y = -velocidad_salto
 
 	velocidad = move_and_slide(velocidad) 
 #	var coll = get_slide_collision(0)
