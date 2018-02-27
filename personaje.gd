@@ -16,19 +16,28 @@ func _physics_process(delta):
 	if (jugador==1):
 		if (Input.is_action_pressed("player1_der")):
 			velocidad.x = velocidad_lateral
+			$Sprite.flip_h = true
 		elif (Input.is_action_pressed("player1_izq")):
 			velocidad.x = -velocidad_lateral
+			$Sprite.flip_h = false
+			$Sprite.play("Walk1")
 		else:
+			$Sprite.stop()
 			velocidad.x = 0 
 		if (Input.is_action_pressed("player1_up")):
 			velocidad.y = -velocidad_salto
 	elif (jugador==2):
 		if (Input.is_action_pressed("player2_der")):
 			velocidad.x = velocidad_lateral
+			$Sprite.flip_h = true
 		elif (Input.is_action_pressed("player2_izq")):
 			velocidad.x = -velocidad_lateral
+			$Sprite.flip_h = false
 		else:
-			velocidad.x = 0 
+			$Sprite.stop()
+			
+			velocidad.x = 0
+			
 		if (Input.is_action_pressed("player2_up")):
 			velocidad.y = -velocidad_salto
 
