@@ -1,11 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Imagenes/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Coin.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Imagenes/PJ2.png" type="Texture" id=4]
 
-[sub_resource type="SegmentShape2D" id=2]
+[sub_resource type="SegmentShape2D" id=1]
 
 custom_solver_bias = 0.0
 a = Vector2( 0, 0 )
@@ -42,7 +41,15 @@ __meta__ = {
 
 position = Vector2( 498.283, 410.109 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="2"]
+[node name="Moneda2" parent="." index="2" instance=ExtResource( 2 )]
+
+position = Vector2( 239.914, 397.806 )
+
+[node name="Moneda3" parent="." index="3" instance=ExtResource( 2 )]
+
+position = Vector2( 709.489, 408.058 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="4"]
 
 editor/display_folded = true
 input_pickable = false
@@ -57,9 +64,9 @@ bounce = 0.0
 
 position = Vector2( 0.125, -1.625 )
 rotation = -1.57362
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
-[node name="Player2" parent="." index="3" instance=ExtResource( 3 )]
+[node name="Player2" parent="." index="5" instance=ExtResource( 3 )]
 
 editor/display_folded = true
 position = Vector2( 910.442, 522.889 )
@@ -68,10 +75,9 @@ jugador = 2
 
 [node name="Sprite" parent="Player2" index="1"]
 
-texture = ExtResource( 4 )
 flip_h = true
 
-[node name="Player" parent="." index="4" instance=ExtResource( 3 )]
+[node name="Player" parent="." index="6" instance=ExtResource( 3 )]
 
 position = Vector2( 125.083, 516.738 )
 jugador = 1

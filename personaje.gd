@@ -11,6 +11,7 @@ func _ready():
 	velocidad.x = 0
 	velocidad.y = 0
 	
+	
 func _physics_process(delta):
 	
 	velocidad.y += gravedad	
