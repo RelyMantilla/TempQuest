@@ -12,6 +12,12 @@ var vacio = load("res://Imagenes/heart_void.png")
 var hot = load("res://Imagenes/heart_hot.png")
 var cold = load("res://Imagenes/heart_cold.png")
 
+func _incrementa_Vida(jugador):
+	if jugador == 1 and VIDA1 < 5:
+		VIDA1 += 1
+	elif jugador == 2 and VIDA2 < 5:
+		VIDA2 +=1
+
 
 func _ready():
 	# puntajes iniciales

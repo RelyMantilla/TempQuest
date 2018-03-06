@@ -18,8 +18,6 @@ func _physics_process(delta):
 	if (Input.is_action_pressed(str("player",str(jugador) ,"_der"))):
 		velocidad.x = velocidad_lateral
 		$Sprite.flip_h = true
-#		if !$Sprite.is_playing():
-#			$Sprite.play(str("Walk",str(jugador)))
 	elif (Input.is_action_pressed(str("player",str(jugador) ,"_izq"))):
 		velocidad.x = -velocidad_lateral
 		$Sprite.flip_h = false
